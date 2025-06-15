@@ -4,3 +4,14 @@
     color: var(--primary-color, #e0e0e0) !important;
   }
 }
+
+/* Dark mode styling for EXIF data */
+html[color-scheme="dark"] .exif-data,
+html[color-scheme="dark"] .exif-data li { /* Target list items too for good measure */
+  color: #e0e0e0 !important; /* A light grey, you can adjust this hex code */
+}
+
+/* You can also style the <h4> if needed */
+html[color-scheme="dark"] .exif-data-container h4 { /* Assuming you add a container class */
+  color: #f0f0f0 !important; /* Slightly brighter for the heading */
+}
