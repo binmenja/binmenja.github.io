@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+  .exif-data {
+    /* Use the theme's primary text color for dark mode, or a specific light color */
+    color: var(--primary-color, #e0e0e0) !important;
+  }
+}
