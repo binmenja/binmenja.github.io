@@ -27,3 +27,17 @@ html[color-scheme="dark"] .exif-data-container h4 { /* Assuming you add a contai
 body, h1, h2, h3, h4, h5, h6, code, pre {
   font-family: 'JetBrains Mono', monospace !important;
 }
+
+/* Navigation sizing overrides */
+/* Increase the font-size of top navigation items (Home, Research, Hobbies, etc.) */
+#nav-menu .nav-item,
+#nav-dropdown-menu .nav-item {
+  font-size: 18px;      /* was 14px in theme */
+  line-height: 40px;    /* ensures comfortable tap target in 50px header */
+}
+
+/* Slightly bolder nav links for readability */
+#nav-menu .nav-item a,
+#nav-dropdown-menu .nav-item a {
+  font-weight: 600;
+}
