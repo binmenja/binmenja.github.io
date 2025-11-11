@@ -15,3 +15,15 @@ html[color-scheme="dark"] .exif-data li { /* Target list items too for good meas
 html[color-scheme="dark"] .exif-data-container h4 { /* Assuming you add a container class */
   color: #f0f0f0 !important; /* Slightly brighter for the heading */
 }
+
+/* JetBrains Mono site-wide font override */
+:root {
+  --font-family-main: 'JetBrains Mono', monospace;
+  --font-family-content: 'JetBrains Mono', monospace;
+  --font-family-summary: 'JetBrains Mono', monospace;
+}
+
+/* Ensure base elements pick it up even if variables aren't referenced everywhere */
+body, h1, h2, h3, h4, h5, h6, code, pre {
+  font-family: 'JetBrains Mono', monospace !important;
+}
