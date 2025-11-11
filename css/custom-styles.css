@@ -32,12 +32,12 @@ body, h1, h2, h3, h4, h5, h6, code, pre {
 /* Increase the font-size of top navigation items (Home, Research, Hobbies, etc.) */
 #nav-menu .nav-item,
 #nav-dropdown-menu .nav-item {
-  font-size: 15px;      /* was 14px in theme */
-  line-height: 40px;    /* ensures comfortable tap target in 50px header */
+  font-size: 16px;      /* was 14px in theme; adjust here */
+  line-height: 38px;    /* keep header comfortable */
 }
 
-/* Slightly bolder nav links for readability */
+/* Moderate weight for readability */
 #nav-menu .nav-item a,
 #nav-dropdown-menu .nav-item a {
-  font-weight: 600;
+  font-weight: 500;
 }
