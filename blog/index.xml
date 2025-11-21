@@ -9,11 +9,11 @@
     <lastBuildDate>Tue, 11 Nov 2025 11:38:12 -0400</lastBuildDate>
     <atom:link href="https://binmenja.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Building a tiny weather station!</title>
+      <title>Tiny weather station!</title>
       <link>https://binmenja.github.io/blog/weatherstation/</link>
       <pubDate>Tue, 11 Nov 2025 11:38:12 -0400</pubDate>
       <guid>https://binmenja.github.io/blog/weatherstation/</guid>
-      <description>&lt;h2 id=&#34;personal-weather-station&#34;&gt;Personal weather station&lt;/h2&gt;&#xA;&lt;p&gt;Recently, I have been more and more passionated about electronics and small hardwares. I decided to slowly build my personal weather station. This is a great Canadian winter hobby and plan to take my time to add more and more measurements.&lt;/p&gt;&#xA;&lt;p&gt;I started with a small Arduino DHT11 sensor, which measures temperature and relative humidity. It currently is in my home office with a led and an LCD screen. I recently purchased a raspberry pi to anticipate upgrades. Find some real-time plot in the &lt;a href=&#34;https://binmenja.github.io/hobbies/&#34;&gt;Hobbies&lt;/a&gt; section.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;personal-weather-station&#34;&gt;Personal weather station&lt;/h2&gt;&#xA;&lt;p&gt;Recently, I have been more and more interested about electronics and small hardwares. I decided to slowly build my personal weather station in my home office. I figured this is a great Canadian winter hobby and plan to take my time to add more and more measurements.&lt;/p&gt;&#xA;&lt;p&gt;For now, I have an Arduino connected to a DHT11 sensor, which measures temperature and relative humidity. The data is then transferred to my Raspberry Pi. Find some real-time plot in the &lt;a href=&#34;https://binmenja.github.io/hobbies/&#34;&gt;Hobbies&lt;/a&gt; section.&lt;/p&gt;</description>
     </item>
     <item>
       <title>First paper got published!</title>
