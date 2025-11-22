@@ -96,7 +96,8 @@
     if(loading) loading.style.display = 'block';
     
     const timestamp = Date.now();
-    const plotUrl = plotUrlFrom(endpoint, hours, days) + '&_t=' + timestamp;
+    let plotUrl = plotUrlFrom(endpoint, hours, days);
+    if(plotUrl) plotUrl += '&_t=' + timestamp;
     
     // Create new image to preload
     const tempImg = new Image();
@@ -105,9 +106,10 @@
       if(loading) loading.style.display = 'none';
     };
     tempImg.onerror = function(){
+      console.error('Failed to load plot:', plotUrl);
       if(loading) loading.style.display = 'none';
     };
-    tempImg.src = plotUrl;
+    if(plotUrl) tempImg.src = plotUrl;
   }
 
   async function fetchSensor(el){
