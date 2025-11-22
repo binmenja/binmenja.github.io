@@ -1,6 +1,6 @@
 (function(){
   const KEY = 'dht11History'; // localStorage key
-  const MAX_POINTS = 720; // 12 hours at 1/minute
+  const MAX_POINTS = 2880; // up to 48 hours at 1/minute
   const REFRESH_MS = 60000; // 60s
   const TZ = 'America/New_York';
 
@@ -27,25 +27,39 @@
     history.push(point);
     if(history.length > MAX_POINTS) history.splice(0, history.length - MAX_POINTS);
   }
-  // Removed legacy canvas plotting; using server-side PNG /plot instead.
+  
   function hoursFor(el){
     const h = parseFloat(el.getAttribute('data-hours')); return isNaN(h)?2:h;
   }
-  function seriesUrlFrom(endpoint){
-    if(!endpoint) return null;
-    if(/\/reading(\?.*)?$/.test(endpoint)) return endpoint.replace(/\/reading(\?.*)?$/, '/series?hours=2');
-    return endpoint.replace(/\/$/,'') + '/series?hours=2';
-  }
-  function plotUrlFrom(endpoint, hours){
+  
+  function seriesUrlFrom(endpoint, hours){
     if(!endpoint) return null;
     const base = /\/reading(\?.*)?$/.test(endpoint) ? endpoint.replace(/\/reading(\?.*)?$/, '') : endpoint.replace(/\/$/,'');
-    return base + '/plot?hours='+encodeURIComponent(hours)+'&width=800&height=300';
+    return base + '/series?hours='+encodeURIComponent(hours);
+  }
+  
+  function historyUrlFrom(endpoint, days){
+    if(!endpoint) return null;
+    const base = /\/reading(\?.*)?$/.test(endpoint) ? endpoint.replace(/\/reading(\?.*)?$/, '') : endpoint.replace(/\/$/,'');
+    return base + '/history?days='+encodeURIComponent(days);
+  }
+  
+  function plotUrlFrom(endpoint, hours, days){
+    if(!endpoint) return null;
+    const base = /\/reading(\?.*)?$/.test(endpoint) ? endpoint.replace(/\/reading(\?.*)?$/, '') : endpoint.replace(/\/$/,'');
+    // For longer ranges, use more points in plot
+    const width = 800;
+    const height = 300;
+    if(days && days >= 1){
+      // Use history endpoint for 1+ days
+      return base + '/plot?days='+encodeURIComponent(days)+'&width='+width+'&height='+height;
+    }
+    return base + '/plot?hours='+encodeURIComponent(hours||2)+'&width='+width+'&height='+height;
   }
 
-  async function fetchSeries(el){
+  async function fetchSeries(el, hours){
     const endpoint = el.getAttribute('data-endpoint');
-    const seriesUrl = seriesUrlFrom(endpoint);
-  // canvas removed; server-side plot only
+    const seriesUrl = seriesUrlFrom(endpoint, hours);
     if(!seriesUrl) return;
     try {
       const r = await fetch(seriesUrl,{cache:'no-store'});
@@ -53,9 +67,47 @@
       const data = await r.json();
       if(Array.isArray(data.points)){
         setHistory(el, data.points.map(p=>({t:p.t, temperature:p.temperature, humidity:p.humidity})));
-        drawChart(canvas, getHistory(el));
       }
     } catch(e){ /* ignore, fallback to local history */ }
+  }
+  
+  async function fetchHistory(el, days){
+    const endpoint = el.getAttribute('data-endpoint');
+    const historyUrl = historyUrlFrom(endpoint, days);
+    if(!historyUrl) return;
+    try {
+      const r = await fetch(historyUrl,{cache:'no-store'});
+      if(!r.ok) throw new Error('HTTP '+r.status);
+      const data = await r.json();
+      if(Array.isArray(data.points)){
+        setHistory(el, data.points.map(p=>({t:p.t, temperature:p.temperature, humidity:p.humidity})));
+      }
+    } catch(e){ 
+      console.warn('Failed to fetch history:', e);
+    }
+  }
+  
+  function updatePlot(el, hours, days){
+    const endpoint = el.getAttribute('data-endpoint');
+    const plotImg = el.querySelector('.sensor-plot');
+    const loading = el.querySelector('.plot-loading');
+    if(!plotImg) return;
+    
+    if(loading) loading.style.display = 'block';
+    
+    const timestamp = Date.now();
+    const plotUrl = plotUrlFrom(endpoint, hours, days) + '&_t=' + timestamp;
+    
+    // Create new image to preload
+    const tempImg = new Image();
+    tempImg.onload = function(){
+      plotImg.src = tempImg.src;
+      if(loading) loading.style.display = 'none';
+    };
+    tempImg.onerror = function(){
+      if(loading) loading.style.display = 'none';
+    };
+    tempImg.src = plotUrl;
   }
 
   async function fetchSensor(el){
@@ -64,7 +116,6 @@
     const humEl = el.querySelector('[data-field="humidity"]');
     const updEl = el.querySelector('[data-field="updated"]');
     const statusEl = el.querySelector('[data-field="status"]');
-    const canvas = el.querySelector('.sensor-chart');
     let history = getHistory(el);
     statusEl.textContent='';
     try {
@@ -74,44 +125,80 @@
       const parsed = parseText(text);
       if(parsed.temperature!=null) tempEl.textContent = parsed.temperature.toFixed(1)+' °C';
       if(parsed.humidity!=null) humEl.textContent = parsed.humidity.toFixed(0)+' %';
-  const now = Date.now();
-  addPoint(history,{t:now, temperature:parsed.temperature, humidity:parsed.humidity});
-  setHistory(el, history);
+      const now = Date.now();
+      addPoint(history,{t:now, temperature:parsed.temperature, humidity:parsed.humidity});
+      setHistory(el, history);
       updEl.textContent = fmtTsET(new Date());
       el.classList.remove('error');
     } catch(e){
       statusEl.textContent='(error)';
       el.classList.add('error');
     }
-  // no client-side redraw
   }
+  
+  function setupRangeButtons(el){
+    const buttons = el.querySelectorAll('.range-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', async function(){
+        // Update active state
+        buttons.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const hours = this.getAttribute('data-hours');
+        const days = this.getAttribute('data-days');
+        
+        if(days){
+          // Fetch from history endpoint
+          await fetchHistory(el, parseInt(days));
+          updatePlot(el, null, parseInt(days));
+        } else if(hours){
+          // Fetch from series endpoint (in-memory)
+          await fetchSeries(el, parseFloat(hours));
+          updatePlot(el, parseFloat(hours), null);
+        }
+      });
+    });
+  }
+  
   function init(){
     document.querySelectorAll('#dht11-widget').forEach(el=>{
-  setHistory(el, loadHistory());
-      // try to load last couple hours from server
-      const hrs = hoursFor(el);
-      // update series URL hours parameter
-      const endpoint = el.getAttribute('data-endpoint');
-      // override series URL by hours value
-      const origSeriesUrl = seriesUrlFrom(endpoint);
-      const customSeriesUrl = origSeriesUrl.replace(/hours=2/, 'hours='+hrs);
-      // temporarily fetch custom series
+      setHistory(el, loadHistory());
+      
+      // Setup interactive range buttons
+      setupRangeButtons(el);
+      
+      // Determine initial range (default to 12 hours)
+      const activeBtn = el.querySelector('.range-btn.active');
+      let initialHours = 12;
+      let initialDays = null;
+      
+      if(activeBtn){
+        const hrs = activeBtn.getAttribute('data-hours');
+        const days = activeBtn.getAttribute('data-days');
+        if(days){
+          initialDays = parseInt(days);
+          initialHours = null;
+        } else if(hrs){
+          initialHours = parseFloat(hrs);
+        }
+      }
+      
+      // Initial data load
       (async()=>{
         try {
-          const r = await fetch(customSeriesUrl,{cache:'no-store'});
-          if(r.ok){
-            const data = await r.json();
-            if(Array.isArray(data.points)){
-              setHistory(el, data.points.map(p=>({t:p.t, temperature:p.temperature, humidity:p.humidity})));
-              // server plot only
-            }
+          if(initialDays){
+            await fetchHistory(el, initialDays);
+          } else {
+            await fetchSeries(el, initialHours);
           }
         } catch(e){}
+        
+        // Fetch current reading and start refresh loop
         fetchSensor(el);
         setInterval(()=>fetchSensor(el), REFRESH_MS);
-        // set static PNG plot img src
-        const plotImg = el.querySelector('.sensor-plot');
-        if(plotImg){ plotImg.src = plotUrlFrom(endpoint, hrs); }
+        
+        // Update plot image
+        updatePlot(el, initialHours, initialDays);
       })();
     });
   }
