@@ -31,8 +31,8 @@
   function plotUrlTRH(endpoint, hours, days){
     const base = baseUrl(endpoint); if(!base) return null;
     const width = 800, height = 300;
-    if(days) return base + '/plot?days='+encodeURIComponent(days)+'&width='+width+'&height='+height;
-    return base + '/plot?hours='+encodeURIComponent(hours||2)+'&width='+width+'&height='+height;
+    if(days) return base + '/plot_scd41_trh?days='+encodeURIComponent(days)+'&width='+width+'&height='+height;
+    return base + '/plot_scd41_trh?hours='+encodeURIComponent(hours||2)+'&width='+width+'&height='+height;
   }
 
   function plotUrlCO2(endpoint, hours, days){
