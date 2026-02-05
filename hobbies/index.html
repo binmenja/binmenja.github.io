@@ -4,17 +4,17 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Hobbies | Benjamin Riot--Bretêcher</title>
+<title>Weather Station | Benjamin Riot--Bretêcher</title>
 <link rel="icon" href="/images/benjamin_riot_portrait.jpeg" type="image/jpeg" /><meta property="og:url" content="https://binmenja.github.io/hobbies/">
   <meta property="og:site_name" content="Benjamin Riot--Bretêcher">
-  <meta property="og:title" content="Hobbies">
-  <meta property="og:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, temperature, humidity and carbon dioxide concentrations are made. See time-series below. Current Reading Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... SCD41 CO₂: — ppmv SCD41 T: — SCD41 RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
+  <meta property="og:title" content="Weather Station">
+  <meta property="og:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, temperature, humidity and carbon dioxide concentrations are made. See time-series below. Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Hobbies">
-  <meta name="twitter:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, temperature, humidity and carbon dioxide concentrations are made. See time-series below. Current Reading Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... SCD41 CO₂: — ppmv SCD41 T: — SCD41 RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
+  <meta name="twitter:title" content="Weather Station">
+  <meta name="twitter:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, temperature, humidity and carbon dioxide concentrations are made. See time-series below. Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
 
       <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" crossorigin="anonymous">
       <link rel="stylesheet" href="/css/root.min.0e732b812b9751962e01a7c4798a1211cd5f8ac8abec7f99793fe306989e459f.css" integrity="sha256-DnMrgSuXUZYuAafEeYoSEc1fisir7H&#43;ZeT/jBpieRZ8=" crossorigin="anonymous">
@@ -48,7 +48,7 @@
 <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <link rel="stylesheet" href="/css/style.css"> 
-<link rel="stylesheet" href="/css/custom-styles.css?v=1764725228">
+<link rel="stylesheet" href="/css/custom-styles.css?v=1770331002">
 
 
 <script src="/js/custom.js" defer></script>
@@ -130,7 +130,7 @@ html[color-scheme="dark"] .centered-container .dim p {
     </div>
     <div class="nav-item">
       <a aria-current="page" class="active" href="/hobbies/"
-      >Hobbies</a>
+      >Weather Station</a>
     </div>
 </div>
     </div>
@@ -161,7 +161,7 @@ html[color-scheme="dark"] .centered-container .dim p {
     </div>
     <div class="nav-item">
       <a aria-current="page" class="active" href="/hobbies/"
-      >Hobbies</a>
+      >Weather Station</a>
     </div>
 </div>
     <a id="theme-switcher" href="#">
@@ -178,12 +178,12 @@ html[color-scheme="dark"] .centered-container .dim p {
 </header>
     <div class="flex grow">
       <div id="main-pane">
-        <main id="main-content"><h1>Hobbies</h1><h2 id="office-sensor">Office sensor</h2>
+        <main id="main-content"><h1>Weather Station</h1><h2 id="office-sensor">Office sensor</h2>
 <p>I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, temperature, humidity and carbon dioxide concentrations are made. See time-series below.
 
 
 <div id="dht11-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading" data-hours="6">
-  <div class="sensor-title">Current Reading</div>
+  <div class="sensor-title">Current Readings from the DHT11 Sensor:</div>
   <div class="sensor-body">
     <div class="sensor-row"><span class="label">Temperature:</span> <span class="value" data-field="temperature">—</span></div>
     <div class="sensor-row"><span class="label">Relative Humidity:</span> <span class="value" data-field="humidity">—</span></div>
@@ -209,11 +209,11 @@ html[color-scheme="dark"] .centered-container .dim p {
 
 
 <div id="scd41-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading">
-  <div class="sensor-title">SCD41</div>
+  <div class="sensor-title">Current Readings from the SCD41 Sensor:</div>
   <div class="sensor-body">
     <div class="sensor-row"><span class="label">CO₂:</span> <span class="value" data-field="co2">—</span> <span class="unit">ppmv</span></div>
-    <div class="sensor-row"><span class="label">SCD41 T:</span> <span class="value" data-field="scd41_t">—</span></div>
-    <div class="sensor-row"><span class="label">SCD41 RH:</span> <span class="value" data-field="scd41_h">—</span></div>
+    <div class="sensor-row"><span class="label">T:</span> <span class="value" data-field="scd41_t">—</span></div>
+    <div class="sensor-row"><span class="label">RH:</span> <span class="value" data-field="scd41_h">—</span></div>
     <div class="sensor-row small"><span class="label">Last update (ET):</span> <span class="value" data-field="updated">—</span> <span class="status" data-field="status"></span></div>
 
     <div class="sensor-controls">
@@ -243,7 +243,7 @@ html[color-scheme="dark"] .centered-container .dim p {
         <footer id="main-footer"><div class="footer">
   <a href="#">Scroll to Top</a>
   <div class="footer-copyright">
-    <div class="dim">© 2025 Benjamin Riot-Bretêcher</div>
+    <div class="dim">© 2026 Benjamin Riot-Bretêcher</div>
   </div>
 </div>
 </footer>
