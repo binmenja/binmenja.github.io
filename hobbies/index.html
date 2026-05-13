@@ -9,14 +9,14 @@
   <meta property="og:site_name" content="Benjamin Riot--Bretêcher">
   <meta property="og:title" content="Weather Station">
   <meta property="og:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.
-Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
+Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Weather Station">
   <meta name="twitter:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.
-Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
+Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
 
       <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" crossorigin="anonymous">
       <link rel="stylesheet" href="/css/root.min.0e732b812b9751962e01a7c4798a1211cd5f8ac8abec7f99793fe306989e459f.css" integrity="sha256-DnMrgSuXUZYuAafEeYoSEc1fisir7H&#43;ZeT/jBpieRZ8=" crossorigin="anonymous">
@@ -50,7 +50,7 @@ Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — 
 <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <link rel="stylesheet" href="/css/style.css"> 
-<link rel="stylesheet" href="/css/custom-styles.css?v=1778617256">
+<link rel="stylesheet" href="/css/custom-styles.css?v=1778701187">
 
 
 <script src="/js/custom.js" defer></script>
@@ -224,6 +224,38 @@ html[color-scheme="dark"] .centered-container .dim p {
 </div>
 </div>
 <script defer src="/js/scd41-widget.js"></script>
+<div id="sen55-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading">
+<div class="sensor-title">Current Readings from the SEN55 Sensor:</div>
+<div class="sensor-body">
+<div class="sensor-row"><span class="label">PM1.0:</span> <span class="value" data-field="pm1">—</span> <span class="unit">µg/m³</span></div>
+<div class="sensor-row"><span class="label">PM2.5:</span> <span class="value" data-field="pm25">—</span> <span class="unit">µg/m³</span></div>
+<div class="sensor-row"><span class="label">PM4.0:</span> <span class="value" data-field="pm4">—</span> <span class="unit">µg/m³</span></div>
+<div class="sensor-row"><span class="label">PM10:</span> <span class="value" data-field="pm10">—</span> <span class="unit">µg/m³</span></div>
+<div class="sensor-row"><span class="label">VOC Index:</span> <span class="value" data-field="voc">—</span></div>
+<div class="sensor-row"><span class="label">NOx Index:</span> <span class="value" data-field="nox">—</span></div>
+<div class="sensor-row"><span class="label">T:</span> <span class="value" data-field="sen55_t">—</span></div>
+<div class="sensor-row"><span class="label">RH:</span> <span class="value" data-field="sen55_h">—</span></div>
+<div class="sensor-row small"><span class="label">Last update (ET):</span> <span class="value" data-field="updated">—</span> <span class="status" data-field="status"></span></div>
+<div class="sensor-controls">
+<div class="time-range-buttons">
+<button class="range-btn sen55-range-btn" data-hours="2">2 hours</button>
+<button class="range-btn sen55-range-btn active" data-hours="12">12 hours</button>
+<button class="range-btn sen55-range-btn" data-days="1">1 day</button>
+<button class="range-btn sen55-range-btn" data-days="7">7 days</button>
+<button class="range-btn sen55-range-btn" data-days="30">30 days</button>
+</div>
+</div>
+<div class="sensor-row" style="margin-top:12px;">
+<img class="sensor-plot sen55-plot-pm" alt="Particulate matter plot" width="800" height="300" />
+<div class="plot-loading pm" style="display:none;">Loading...</div>
+</div>
+<div class="sensor-row" style="margin-top:12px;">
+<img class="sensor-plot sen55-plot-voc-nox" alt="VOC and NOx plot" width="800" height="300" />
+<div class="plot-loading voc-nox" style="display:none;">Loading...</div>
+</div>
+</div>
+</div>
+<script defer src="/js/sen55-widget.js"></script>
 </div>
 <div id="password-container" style="text-align: center; padding: 2rem 0; border-radius: 8px; border: 1px solid #ccc; max-width: 400px; margin: 2rem auto;">
     <h3 style="margin-top: 0;">Restricted Content</h3>
