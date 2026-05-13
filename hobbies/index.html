@@ -8,15 +8,13 @@
 <link rel="icon" href="/images/benjamin_riot_portrait.jpeg" type="image/jpeg" /><meta property="og:url" content="https://binmenja.github.io/hobbies/">
   <meta property="og:site_name" content="Benjamin Riot--Bretêcher">
   <meta property="og:title" content="Weather Station">
-  <meta property="og:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.
-Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
+  <meta property="og:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below. Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Weather Station">
-  <meta name="twitter:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.
-Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Restricted Content Please enter the password to view this page.">
+  <meta name="twitter:description" content="Office sensor I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below. Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Current Readings from the SCD41 Sensor: CO₂: — ppmv T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading... Current Readings from the SEN55 Sensor: PM1.0: — µg/m³ PM2.5: — µg/m³ PM4.0: — µg/m³ PM10: — µg/m³ VOC Index: — NOx Index: — T: — RH: — Last update (ET): — 2 hours 12 hours 1 day 7 days 30 days Loading... Loading...">
 
       <link rel="stylesheet" href="/css/custom.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" integrity="sha256-47DEQpj8HBSa&#43;/TImW&#43;5JCeuQeRkm5NMpJWZG3hSuFU=" crossorigin="anonymous">
       <link rel="stylesheet" href="/css/root.min.0e732b812b9751962e01a7c4798a1211cd5f8ac8abec7f99793fe306989e459f.css" integrity="sha256-DnMrgSuXUZYuAafEeYoSEc1fisir7H&#43;ZeT/jBpieRZ8=" crossorigin="anonymous">
@@ -50,7 +48,7 @@ Current Readings from the DHT11 Sensor: Temperature: — Relative Humidity: — 
 <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
 <link rel="stylesheet" href="/css/style.css"> 
-<link rel="stylesheet" href="/css/custom-styles.css?v=1778701187">
+<link rel="stylesheet" href="/css/custom-styles.css?v=1778701956">
 
 
 <script src="/js/custom.js" defer></script>
@@ -172,9 +170,10 @@ html[color-scheme="dark"] .centered-container .dim p {
 </header>
     <div class="flex grow">
       <div id="main-pane">
-        <main id="main-content"><h1>Weather Station</h1><div id="protected-content" style="display: none;">
-<h2 id="office-sensor">Office sensor</h2>
-<p>I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.</p>
+        <main id="main-content"><h1>Weather Station</h1><h2 id="office-sensor">Office sensor</h2>
+<p>I am currently building a weather station using a Raspberry Pi and some Arduino circuits. So far, measurements of temperature, humidity and carbon dioxide are being acquired. See (real)time-series below.
+
+
 <div id="dht11-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading" data-hours="6">
 <div class="sensor-title">Current Readings from the DHT11 Sensor:</div>
 <div class="sensor-body">
@@ -197,6 +196,8 @@ html[color-scheme="dark"] .centered-container .dim p {
 </div>
 </div>
 <script defer src="/js/dht11-widget.js"></script>
+
+
 <div id="scd41-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading">
 <div class="sensor-title">Current Readings from the SCD41 Sensor:</div>
 <div class="sensor-body">
@@ -224,6 +225,8 @@ html[color-scheme="dark"] .centered-container .dim p {
 </div>
 </div>
 <script defer src="/js/scd41-widget.js"></script>
+
+
 <div id="sen55-widget" class="sensor-card" data-endpoint="https://raspberrypi.taile377a2.ts.net/reading">
 <div class="sensor-title">Current Readings from the SEN55 Sensor:</div>
 <div class="sensor-body">
@@ -255,38 +258,7 @@ html[color-scheme="dark"] .centered-container .dim p {
 </div>
 </div>
 </div>
-<script defer src="/js/sen55-widget.js"></script>
-</div>
-<div id="password-container" style="text-align: center; padding: 2rem 0; border-radius: 8px; border: 1px solid #ccc; max-width: 400px; margin: 2rem auto;">
-    <h3 style="margin-top: 0;">Restricted Content</h3>
-    <p>Please enter the password to view this page.</p>
-    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 1rem;">
-        <input type="password" id="page-password" placeholder="Password" style="padding: 8px; border: 1px solid #aaa; border-radius: 4px;" />
-        <button onclick="checkPassword()" style="padding: 8px 16px; border: none; background-color: #333; color: white; border-radius: 4px; cursor: pointer;">Submit</button>
-    </div>
-    <p id="password-error" style="color: red; display: none; margin-top: 10px; font-size: 0.9em;">Incorrect password.</p>
-</div>
-<script>
-function checkPassword() {
-    const pwd = document.getElementById("page-password").value;
-    const expected = "cloudy";
-    
-    
-    if (pwd === expected) {
-        document.getElementById("password-container").style.display = "none";
-        document.getElementById("protected-content").style.display = "block";
-    } else {
-        document.getElementById("password-error").style.display = "block";
-    }
-}
-
-
-document.getElementById('page-password').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        checkPassword();
-    }
-});
-</script>
+<script defer src="/js/sen55-widget.js"></script></p>
 </main>
         <footer id="main-footer"><div class="footer">
   <a href="#">Scroll to Top</a>
