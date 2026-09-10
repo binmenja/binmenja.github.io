@@ -28,6 +28,16 @@ body, h1, h2, h3, h4, h5, h6, code, pre {
   font-family: 'JetBrains Mono', monospace !important;
 }
 
+/* Center the nav menu now that the site title link is removed from the header */
+div[role="navigation"] {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-right {
+  float: none;
+}
+
 /* Navigation sizing overrides */
 /* Increase the font-size of top navigation items (Home, Research, Hobbies, etc.) */
 #nav-menu .nav-item,
