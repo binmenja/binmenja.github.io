@@ -31,6 +31,10 @@
   function hoursFor(el){
     const h = parseFloat(el.getAttribute('data-hours')); return isNaN(h)?2:h;
   }
+
+  function parseDays(v){
+    return v === 'all' ? 'all' : parseInt(v, 10);
+  }
   
   function seriesUrlFrom(endpoint, hours){
     if(!endpoint) return null;
@@ -50,8 +54,8 @@
     // For longer ranges, use more points in plot
     const width = 800;
     const height = 300;
-    if(days && days >= 1){
-      // Use history endpoint for 1+ days
+    if(days && (days === 'all' || days >= 1)){
+      // Use history endpoint for 1+ days (or the full climatology)
       return base + '/plot?days='+encodeURIComponent(days)+'&width='+width+'&height='+height;
     }
     return base + '/plot?hours='+encodeURIComponent(hours||2)+'&width='+width+'&height='+height;
@@ -151,8 +155,9 @@
         
         if(days){
           // Fetch from history endpoint
-          await fetchHistory(el, parseInt(days));
-          updatePlot(el, null, parseInt(days));
+          const d = parseDays(days);
+          await fetchHistory(el, d);
+          updatePlot(el, null, d);
         } else if(hours){
           // Fetch from series endpoint (in-memory)
           await fetchSeries(el, parseFloat(hours));
@@ -178,7 +183,7 @@
         const hrs = activeBtn.getAttribute('data-hours');
         const days = activeBtn.getAttribute('data-days');
         if(days){
-          initialDays = parseInt(days);
+          initialDays = parseDays(days);
           initialHours = null;
         } else if(hrs){
           initialHours = parseFloat(hrs);

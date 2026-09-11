@@ -28,6 +28,10 @@
       : endpoint.replace(/\/$/,'');
   }
 
+  function parseDays(v){
+    return v === 'all' ? 'all' : parseInt(v, 10);
+  }
+
   function plotUrlTRH(endpoint, hours, days){
     const base = baseUrl(endpoint); if(!base) return null;
     const width = 800, height = 300;
@@ -107,7 +111,7 @@
         const hours = this.getAttribute('data-hours');
         const days  = this.getAttribute('data-days');
         const h = hours ? parseFloat(hours) : null;
-        const d = days ? parseInt(days,10) : null;
+        const d = days ? parseDays(days) : null;
         applyRange(h,d);
       });
     });
@@ -118,7 +122,7 @@
     if(activeBtn){
       const hrs = activeBtn.getAttribute('data-hours');
       const days = activeBtn.getAttribute('data-days');
-      if(days){ initialDays = parseInt(days,10); initialHours = null; }
+      if(days){ initialDays = parseDays(days); initialHours = null; }
       else if(hrs){ initialHours = parseFloat(hrs); }
     }
     applyRange(initialHours, initialDays);
